@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA24C31A20CF70B3000A39AA /* YWModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24C31920CF70B3000A39AA /* YWModalViewController.m */; };
+		DA24C31D20CF74EA000A39AA /* YWModalTiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24C31C20CF74EA000A39AA /* YWModalTiveViewController.m */; };
+		DAA83C5A20CE88A100077FFF /* YWHomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA83C5920CE88A100077FFF /* YWHomeTableViewController.m */; };
+		DAA83C5D20CE88B200077FFF /* YWMineTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA83C5C20CE88B200077FFF /* YWMineTableViewController.m */; };
+		DAA83C6020CE89AA00077FFF /* YWModularDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA83C5F20CE89AA00077FFF /* YWModularDetailViewController.m */; };
+		DAA83C6620CE8AEC00077FFF /* YWRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA83C6520CE8AEC00077FFF /* YWRouter.m */; };
 		DAEFFB0C20CE676F00C5B8D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEFFB0B20CE676F00C5B8D9 /* AppDelegate.m */; };
 		DAEFFB0F20CE676F00C5B8D9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEFFB0E20CE676F00C5B8D9 /* ViewController.m */; };
 		DAEFFB1220CE676F00C5B8D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAEFFB1020CE676F00C5B8D9 /* Main.storyboard */; };
@@ -16,6 +22,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA24C31820CF70B3000A39AA /* YWModalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YWModalViewController.h; sourceTree = "<group>"; };
+		DA24C31920CF70B3000A39AA /* YWModalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YWModalViewController.m; sourceTree = "<group>"; };
+		DA24C31B20CF74EA000A39AA /* YWModalTiveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YWModalTiveViewController.h; sourceTree = "<group>"; };
+		DA24C31C20CF74EA000A39AA /* YWModalTiveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YWModalTiveViewController.m; sourceTree = "<group>"; };
+		DAA83C5820CE88A100077FFF /* YWHomeTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YWHomeTableViewController.h; sourceTree = "<group>"; };
+		DAA83C5920CE88A100077FFF /* YWHomeTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YWHomeTableViewController.m; sourceTree = "<group>"; };
+		DAA83C5B20CE88B200077FFF /* YWMineTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YWMineTableViewController.h; sourceTree = "<group>"; };
+		DAA83C5C20CE88B200077FFF /* YWMineTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YWMineTableViewController.m; sourceTree = "<group>"; };
+		DAA83C5E20CE89AA00077FFF /* YWModularDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YWModularDetailViewController.h; sourceTree = "<group>"; };
+		DAA83C5F20CE89AA00077FFF /* YWModularDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YWModularDetailViewController.m; sourceTree = "<group>"; };
+		DAA83C6220CE89F800077FFF /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		DAA83C6420CE8AEC00077FFF /* YWRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWRouter.h; sourceTree = "<group>"; };
+		DAA83C6520CE8AEC00077FFF /* YWRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWRouter.m; sourceTree = "<group>"; };
 		DAEFFB0720CE676F00C5B8D9 /* YWRouterDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YWRouterDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAEFFB0A20CE676F00C5B8D9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DAEFFB0B20CE676F00C5B8D9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -39,6 +58,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DAA83C5520CE881900077FFF /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				DAA83C5720CE885300077FFF /* Modular_B */,
+				DAA83C5620CE882700077FFF /* Modular_A */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		DAA83C5620CE882700077FFF /* Modular_A */ = {
+			isa = PBXGroup;
+			children = (
+				DAA83C5820CE88A100077FFF /* YWHomeTableViewController.h */,
+				DAA83C5920CE88A100077FFF /* YWHomeTableViewController.m */,
+				DAA83C5E20CE89AA00077FFF /* YWModularDetailViewController.h */,
+				DAA83C5F20CE89AA00077FFF /* YWModularDetailViewController.m */,
+				DA24C31820CF70B3000A39AA /* YWModalViewController.h */,
+				DA24C31920CF70B3000A39AA /* YWModalViewController.m */,
+				DA24C31B20CF74EA000A39AA /* YWModalTiveViewController.h */,
+				DA24C31C20CF74EA000A39AA /* YWModalTiveViewController.m */,
+			);
+			path = Modular_A;
+			sourceTree = "<group>";
+		};
+		DAA83C5720CE885300077FFF /* Modular_B */ = {
+			isa = PBXGroup;
+			children = (
+				DAA83C5B20CE88B200077FFF /* YWMineTableViewController.h */,
+				DAA83C5C20CE88B200077FFF /* YWMineTableViewController.m */,
+			);
+			path = Modular_B;
+			sourceTree = "<group>";
+		};
+		DAA83C6120CE89E900077FFF /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				DAA83C6220CE89F800077FFF /* PrefixHeader.pch */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		DAA83C6320CE8AEC00077FFF /* YWRouter */ = {
+			isa = PBXGroup;
+			children = (
+				DAA83C6420CE8AEC00077FFF /* YWRouter.h */,
+				DAA83C6520CE8AEC00077FFF /* YWRouter.m */,
+			);
+			name = YWRouter;
+			path = ../../YWRouter;
+			sourceTree = "<group>";
+		};
 		DAEFFAFE20CE676F00C5B8D9 = {
 			isa = PBXGroup;
 			children = (
@@ -58,10 +128,13 @@
 		DAEFFB0920CE676F00C5B8D9 /* YWRouterDemo */ = {
 			isa = PBXGroup;
 			children = (
+				DAA83C6320CE8AEC00077FFF /* YWRouter */,
 				DAEFFB0A20CE676F00C5B8D9 /* AppDelegate.h */,
 				DAEFFB0B20CE676F00C5B8D9 /* AppDelegate.m */,
 				DAEFFB0D20CE676F00C5B8D9 /* ViewController.h */,
 				DAEFFB0E20CE676F00C5B8D9 /* ViewController.m */,
+				DAA83C6120CE89E900077FFF /* Header */,
+				DAA83C5520CE881900077FFF /* Class */,
 				DAEFFB1020CE676F00C5B8D9 /* Main.storyboard */,
 				DAEFFB1320CE676F00C5B8D9 /* Assets.xcassets */,
 				DAEFFB1520CE676F00C5B8D9 /* LaunchScreen.storyboard */,
@@ -143,8 +216,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAEFFB0F20CE676F00C5B8D9 /* ViewController.m in Sources */,
+				DAA83C5D20CE88B200077FFF /* YWMineTableViewController.m in Sources */,
+				DAA83C6620CE8AEC00077FFF /* YWRouter.m in Sources */,
+				DAA83C6020CE89AA00077FFF /* YWModularDetailViewController.m in Sources */,
 				DAEFFB1A20CE676F00C5B8D9 /* main.m in Sources */,
+				DAA83C5A20CE88A100077FFF /* YWHomeTableViewController.m in Sources */,
+				DA24C31A20CF70B3000A39AA /* YWModalViewController.m in Sources */,
 				DAEFFB0C20CE676F00C5B8D9 /* AppDelegate.m in Sources */,
+				DA24C31D20CF74EA000A39AA /* YWModalTiveViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +358,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y784R48MX2;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/YWRouterDemo/Header/PrefixHeader.pch";
 				INFOPLIST_FILE = YWRouterDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -293,6 +374,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y784R48MX2;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/YWRouterDemo/Header/PrefixHeader.pch";
 				INFOPLIST_FILE = YWRouterDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

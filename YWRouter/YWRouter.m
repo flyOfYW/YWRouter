@@ -170,8 +170,10 @@ iOS方法调用有两种，
 #pragma clang diagnostic pop
 }
 
+
+
 /**
- 获取控制器
+ 获取控制器，交互给外界，用当前者决定怎么使用该控制器
  *--格式-open://controller?class=控制器的类名&params=传递的参数(参数可选)
  @param ctrUrl url链接
  @return 控制器
@@ -195,9 +197,36 @@ iOS方法调用有两种，
 }
 
 /**
- push控制器
+ push控制器（同系统）
 
- @param ctrUrl 链接
+ @param ctrUrl 链接 --格式-open://controller?class=控制器的类名&params=传递的参数(参数可选)
+ @param animated 是否动画
+ */
++ (void)YW_pushControllerWithURL:(NSString *)ctrUrl animated:(BOOL)animated{
+    
+    [[YWRouter YWRouterSingletonInstance] pushControllerWithURL:ctrUrl animated:animated];
+}
+
+/**
+  push控制器（同系统）
+
+ @param controllerName 目标控制器的类名
+ @param params 参数
+ @param animated 是否动画
+ */
++ (void)YW_pushControllerName:(NSString *)controllerName params:(NSDictionary *)params animated:(BOOL)animated{
+    
+    Class controllerClass = NSClassFromString(controllerName);
+    if (params) {
+        [[YWRouter YWRouterSingletonInstance] pushController:[[controllerClass alloc] init] params:@{@"params":params,@"custom":@(YES)} animated:animated];
+    }else{
+        [[YWRouter YWRouterSingletonInstance] pushController:[[controllerClass alloc] init] params:nil animated:animated];
+    }
+}
+/**
+ push控制器
+ 
+ @param ctrUrl 链接 --格式-open://controller?class=控制器的类名&params=传递的参数(参数可选)
  @param animated 是否需要动画
  */
 - (void)pushControllerWithURL:(NSString *)ctrUrl animated:(BOOL)animated{
@@ -208,6 +237,26 @@ iOS方法调用有两种，
     
     UIViewController *viewController = [[controllerClass alloc] init];
     
+    [self pushController:viewController params:params animated:animated];
+    
+}
+
+/**
+ push控制器（同系统）
+
+ @param viewController 目标控制器
+ @param params 参数(key-value)
+ @param animated 是否动画
+ */
+- (void)pushController:(UIViewController *)viewController params:(NSDictionary *)params animated:(BOOL)animated{
+    
+    if (!params[@"params"]) {
+        
+        [[self currentNavigationViewController] pushViewController:viewController animated:animated];
+        
+        return;
+    }
+    
     if ([viewController respondsToSelector:@selector(setParams:)]) {
         [viewController performSelector:@selector(setParams:)
                              withObject:[params copy]];
@@ -216,8 +265,144 @@ iOS方法调用有两种，
     }
     
     [[self currentNavigationViewController] pushViewController:viewController animated:animated];
+}
+
+//MARK: ---------------- modal控制器 -------------------
+/**
+ modal控制器
+
+ @param ctrUrl 链接 --格式-open://controller?class=控制器的类名&params=传递的参数(参数可选)
+ @param animated 是否需要动画
+ @param completion 完成回调
+ */
++(void)YW_presentViewController:(NSString *)ctrUrl animated:(BOOL)animated completion:(void (^ __nullable)(void))completion{
+    
+    [[YWRouter YWRouterSingletonInstance] presentViewController:ctrUrl animated:animated completion:completion];
+}
+
+/**
+ modal控制器
+
+ @param controllerName 目标控制器的类名
+ @param params 参数（key-value）
+ @param animated 动画
+ @param completion 完成回调
+ */
++(void)YW_presentViewControllerName:(NSString *)controllerName params:(NSDictionary *)params animated:(BOOL)animated completion:(void (^ __nullable)(void))completion{
+    
+    Class controllerClass = NSClassFromString(controllerName);
+    
+    if (params) {
+        [[YWRouter YWRouterSingletonInstance] presentViewController:[[controllerClass alloc]init] params:@{@"params":params,@"custom":@(YES)} animated:animated completion:completion];
+    }else{
+        [[YWRouter YWRouterSingletonInstance] presentViewController:[[controllerClass alloc]init] params:nil animated:animated completion:completion];
+    }
+    
     
 }
+/**
+ modal 控制器（同系统)
+
+ @param ctrUrl 链接 --格式-open://controller?class=控制器的类名&params=传递的参数(参数可选)
+ @param animated 是否需要动画
+ @param completion 完成回调
+ */
+- (void)presentViewController:(NSString *)ctrUrl animated:(BOOL)animated completion:(void (^ __nullable)(void))completion{
+    
+    NSDictionary *params = [self paramsResolveRoute:ctrUrl];
+    
+    Class controllerClass = NSClassFromString(params[@"class"]);
+    
+    UIViewController *viewController = [[controllerClass alloc] init];
+
+    [self presentViewController:viewController params:params animated:animated completion:completion];
+}
+
+/**
+  modal 控制器（同系统）
+
+ @param viewController 目标控制器
+ @param params 参数
+ @param animated 是否需要动画
+ @param completion 完成回调
+ */
+- (void)presentViewController:(UIViewController *)viewController params:(NSDictionary *)params animated:(BOOL)animated completion:(void (^ __nullable)(void))completion{
+    
+    if (!params[@"params"]) {
+        
+        [[[YWRouter YWRouterSingletonInstance] currentViewController] presentViewController:viewController animated:animated completion:completion];
+
+        return;
+    }
+    
+    if ([viewController respondsToSelector:@selector(setParams:)]) {
+        [viewController performSelector:@selector(setParams:)
+                             withObject:[params copy]];
+    }else{
+        NSLog(@"----------------- 该控制器没有实现setParams,导致传递参数失败------ \n");
+    }
+    
+    [[[YWRouter YWRouterSingletonInstance] currentViewController] presentViewController:viewController animated:animated completion:completion];
+
+}
+
+/**
+ dismiss掉几层控制器（类方法）
+
+ @param layer 多少层
+ @param animated 是否动画
+ @param completion 回调
+ */
++ (void)YW_dismissViewControllerWithLayer:(NSUInteger)layer Animated:(BOOL)animated completion: (void (^ __nullable)(void))completion{
+    
+    [[YWRouter YWRouterSingletonInstance] dismissViewControllerWithLayer:layer Animated:animated completion:completion];
+    
+}
+
+/**
+ dismiss掉到根层控制器
+
+ @param animated 是否动画
+ @param completion 回调
+ */
++ (void)YW_dismissToRootViewControllerWithAnimated:(BOOL)animated completion: (void (^ __nullable)(void))completion{
+    
+    UIViewController *currentViewController = [[YWRouter YWRouterSingletonInstance] currentViewController];
+    
+    UIViewController *rootVC = currentViewController;
+    
+    while (rootVC.presentingViewController) {
+        rootVC = rootVC.presentingViewController;
+    }
+    [rootVC dismissViewControllerAnimated:YES completion:completion];
+}
+
+/**
+  dismiss掉几层控制器
+
+ @param layer 多少层
+ @param animated 是否动画
+ @param completion 回调
+ */
+- (void)dismissViewControllerWithLayer:(NSUInteger)layer Animated:(BOOL)animated completion: (void (^ __nullable)(void))completion {
+    
+    UIViewController *rootVC = [self currentViewController];
+    
+    if (rootVC) {
+        while (layer > 0) {
+            rootVC = rootVC.presentingViewController;
+            layer -= 1;
+        }
+        [rootVC dismissViewControllerAnimated:animated completion:completion];
+    }
+    
+    if (!rootVC.presentedViewController) {
+        NSLog(@"确定能dismiss掉这么多控制器?");
+    }
+}
+
+
+
 
 
 /**
@@ -242,36 +427,13 @@ iOS方法调用有两种，
     
         NSArray *pSetKeyValue = [str componentsSeparatedByString:@"="];
 
-        [params setObject:pSetKeyValue.lastObject forKey:pSetKeyValue.firstObject];
+        if (![pSetKeyValue.lastObject isEqualToString:@"nil"]) {
+            [params setObject:pSetKeyValue.lastObject forKey:pSetKeyValue.firstObject];
+        }
     }
     
     return params;
 
-}
-- (NSString *)stringFromFilterAppUrlScheme:(NSString *)string
-{
-    // filter out the app URL compontents.
-    for (NSString *appUrlScheme in [self appUrlSchemes]) {
-        if ([string hasPrefix:[NSString stringWithFormat:@"%@:", appUrlScheme]]) {
-            return [string substringFromIndex:appUrlScheme.length + 2];
-        }
-    }
-    
-    return string;
-}
-
-- (NSArray *)appUrlSchemes
-{
-    NSMutableArray *appUrlSchemes = [NSMutableArray array];
-    
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    
-    for (NSDictionary *dic in infoDictionary[@"CFBundleURLTypes"]) {
-        NSString *appUrlScheme = dic[@"CFBundleURLSchemes"][0];
-        [appUrlSchemes addObject:appUrlScheme];
-    }
-    
-    return [appUrlSchemes copy];
 }
 //MARK: --- 跟控制器相关
 - (UIViewController*)currentViewController {
