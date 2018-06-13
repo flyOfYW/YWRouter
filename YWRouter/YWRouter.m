@@ -345,6 +345,20 @@ iOS方法调用有两种，
     [[[YWRouter YWRouterSingletonInstance] currentViewController] presentViewController:viewController animated:animated completion:completion];
 
 }
+//MARK: --- dismiss控制器
+
+/**
+ 快捷dismiss一层
+
+ @param animated 是否动画
+ @param completion 回调
+ */
++ (void)YW_dismissViewControllerAnimated:(BOOL)animated completion:(void (^ __nullable)(void))completion{
+    
+    UIViewController *currentViewController = [[YWRouter YWRouterSingletonInstance] currentViewController];
+    [currentViewController dismissViewControllerAnimated:animated completion:completion];
+    
+}
 
 /**
  dismiss掉几层控制器（类方法）
@@ -400,10 +414,59 @@ iOS方法调用有两种，
         NSLog(@"确定能dismiss掉这么多控制器?");
     }
 }
+//MARK: ---- pop控制器----
 
+/**
+ 快捷pop上一个控制器
 
-
-
+ @param animated 是否动画
+ */
++ (void)YW_popViewControllerAnimated:(BOOL)animated{
+    
+    UIViewController *currentViewController = [[YWRouter YWRouterSingletonInstance] currentViewController];
+    [currentViewController.navigationController popViewControllerAnimated:animated];
+}
+/**
+ pop掉几层控制器（类方法）
+ 
+ @param layer 多少层
+ @param animated 是否动画
+ */
++ (void)YW_popViewControllerWithLayer:(NSUInteger)layer Animated:(BOOL)animated{
+    
+    [[YWRouter YWRouterSingletonInstance] popViewControllerWithLayer:layer Animated:animated];
+}
+/**
+ pop掉到根层控制器
+ 
+ @param animated 是否动画
+ */
++ (void)YW_popToRootViewControllerWithAnimated:(BOOL)animated{
+    
+    UIViewController *currentViewController = [[YWRouter YWRouterSingletonInstance] currentViewController];
+    [currentViewController.navigationController popToRootViewControllerAnimated:YES];
+}
+/**
+ pops掉几层控制器（对象方法）
+ 
+ @param layer 多少层
+ @param animated 是否动画
+ */
+- (void)popViewControllerWithLayer:(NSUInteger)layer Animated:(BOOL)animated{
+    
+    UIViewController *currentViewController = [self currentViewController];
+    
+    NSUInteger count = currentViewController.navigationController.viewControllers.count;
+    if(currentViewController){
+        if(currentViewController.navigationController) {
+            if (count > layer){
+                [currentViewController.navigationController popToViewController:[currentViewController.navigationController.viewControllers objectAtIndex:count-1-layer] animated:animated];
+            }else { // 如果times大于控制器的数量
+                NSLog(@"确定可以pop掉那么多控制器?");
+            }
+        }
+    }
+}
 
 /**
  解析参数
@@ -490,6 +553,10 @@ iOS方法调用有两种，
 
 static char kAssociatedParamsObjectKey;
 
+static char kAssociatedBlockObjectKey;
+
+
+
 - (void)setParams:(NSDictionary *)paramsDictionary
 {
     objc_setAssociatedObject(self, &kAssociatedParamsObjectKey, paramsDictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -499,6 +566,13 @@ static char kAssociatedParamsObjectKey;
 {
     return objc_getAssociatedObject(self, &kAssociatedParamsObjectKey);
 }
+- (void)setYwReturnBlock:(void (^)(id _Nullable))ywReturnBlock{
+    
+    objc_setAssociatedObject(self, &kAssociatedBlockObjectKey, ywReturnBlock, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
+}
+-(void (^)(id _Nullable))ywReturnBlock{
+    return objc_getAssociatedObject(self, &kAssociatedBlockObjectKey);
+}
 @end
 

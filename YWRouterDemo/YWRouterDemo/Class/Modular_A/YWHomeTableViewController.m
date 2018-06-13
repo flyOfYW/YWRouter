@@ -24,6 +24,8 @@
     [self.dataList addObject:@"push到本模块的详情页（对象方法）"];
     [self.dataList addObject:@"push到本模块的详情页（类方法，直接传值）"];
     [self.dataList addObject:@"modal到本模块的详情页（类方法）"];
+    [self.dataList addObject:@"push页面，然后pop反向传值"];
+    [self.dataList addObject:@"push页面，然后pop反向传值(另一种接收方式)"];
 
 
 }
@@ -42,6 +44,7 @@
  
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"reuseIdentifier"];
+        cell.textLabel.font = [UIFont systemFontOfSize:13];
     }
     if (indexPath.row < self.dataList.count) {
         cell.textLabel.text = self.dataList[indexPath.row];
@@ -66,8 +69,26 @@
         case 3:{
             NSString *url = [NSString stringWithFormat:@"open://controller?class=YWModalViewController&params=%@",self.dataList[3]];
             [YWRouter YW_presentViewController:url animated:YES completion:nil];
-        }
             break;
+        }
+        case 4:{
+            NSString *url = [NSString stringWithFormat:@"open://controller?class=YWModularBlcokValueViewController&params=%@",self.dataList[0]];
+            [YWRouter YW_pushControllerWithURL:url animated:YES];
+            UIViewController *YWModularBlcokValueViewController = [[YWRouter YWRouterSingletonInstance] currentViewController];
+            YWModularBlcokValueViewController.ywReturnBlock = ^(id  _Nullable value) {
+                NSLog(@"%@",value);
+            };
+            break;
+        }
+        case 5:{
+            NSString *url = [NSString stringWithFormat:@"open://controller?class=YWModularBlcokValueViewController&params=%@",self.dataList[0]];
+             UIViewController *YWModularBlcokValueViewController = [[YWRouter YWRouterSingletonInstance] OpenControllerWithURL:url];
+            YWModularBlcokValueViewController.ywReturnBlock = ^(id  _Nullable value) {
+                NSLog(@"%@",value);
+            };
+            [self.navigationController pushViewController:YWModularBlcokValueViewController animated:YES];
+            break;
+        }
         default:
             break;
     }

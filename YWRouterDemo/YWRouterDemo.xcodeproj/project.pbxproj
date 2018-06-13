@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DA24C31A20CF70B3000A39AA /* YWModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24C31920CF70B3000A39AA /* YWModalViewController.m */; };
 		DA24C31D20CF74EA000A39AA /* YWModalTiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24C31C20CF74EA000A39AA /* YWModalTiveViewController.m */; };
+		DA71826120D130E100604462 /* YWModularBlcokValueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA71826020D130E100604462 /* YWModularBlcokValueViewController.m */; };
 		DAA83C5A20CE88A100077FFF /* YWHomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA83C5920CE88A100077FFF /* YWHomeTableViewController.m */; };
 		DAA83C5D20CE88B200077FFF /* YWMineTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA83C5C20CE88B200077FFF /* YWMineTableViewController.m */; };
 		DAA83C6020CE89AA00077FFF /* YWModularDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA83C5F20CE89AA00077FFF /* YWModularDetailViewController.m */; };
@@ -26,6 +27,8 @@
 		DA24C31920CF70B3000A39AA /* YWModalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YWModalViewController.m; sourceTree = "<group>"; };
 		DA24C31B20CF74EA000A39AA /* YWModalTiveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YWModalTiveViewController.h; sourceTree = "<group>"; };
 		DA24C31C20CF74EA000A39AA /* YWModalTiveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YWModalTiveViewController.m; sourceTree = "<group>"; };
+		DA71825F20D130E100604462 /* YWModularBlcokValueViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YWModularBlcokValueViewController.h; sourceTree = "<group>"; };
+		DA71826020D130E100604462 /* YWModularBlcokValueViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YWModularBlcokValueViewController.m; sourceTree = "<group>"; };
 		DAA83C5820CE88A100077FFF /* YWHomeTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YWHomeTableViewController.h; sourceTree = "<group>"; };
 		DAA83C5920CE88A100077FFF /* YWHomeTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YWHomeTableViewController.m; sourceTree = "<group>"; };
 		DAA83C5B20CE88B200077FFF /* YWMineTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YWMineTableViewController.h; sourceTree = "<group>"; };
@@ -74,6 +77,8 @@
 				DAA83C5920CE88A100077FFF /* YWHomeTableViewController.m */,
 				DAA83C5E20CE89AA00077FFF /* YWModularDetailViewController.h */,
 				DAA83C5F20CE89AA00077FFF /* YWModularDetailViewController.m */,
+				DA71825F20D130E100604462 /* YWModularBlcokValueViewController.h */,
+				DA71826020D130E100604462 /* YWModularBlcokValueViewController.m */,
 				DA24C31820CF70B3000A39AA /* YWModalViewController.h */,
 				DA24C31920CF70B3000A39AA /* YWModalViewController.m */,
 				DA24C31B20CF74EA000A39AA /* YWModalTiveViewController.h */,
@@ -216,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAEFFB0F20CE676F00C5B8D9 /* ViewController.m in Sources */,
+				DA71826120D130E100604462 /* YWModularBlcokValueViewController.m in Sources */,
 				DAA83C5D20CE88B200077FFF /* YWMineTableViewController.m in Sources */,
 				DAA83C6620CE8AEC00077FFF /* YWRouter.m in Sources */,
 				DAA83C6020CE89AA00077FFF /* YWModularDetailViewController.m in Sources */,

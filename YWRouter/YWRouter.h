@@ -91,6 +91,15 @@
  */
 - (void)presentViewController:(NSString *_Nullable)ctrUrl animated:(BOOL)animated completion:(void (^ __nullable)(void))completion;
 
+
+#pragma mark --------  dismiss控制器 --------
+/**
+ 快捷dismiss一层
+ 
+ @param animated 是否动画
+ @param completion 回调
+ */
++ (void)YW_dismissViewControllerAnimated:(BOOL)animated completion:(void (^ __nullable)(void))completion;
 /**
  dismiss掉几层控制器（类方法）
  
@@ -116,10 +125,51 @@
  */
 - (void)dismissViewControllerWithLayer:(NSUInteger)layer Animated:(BOOL)animated completion: (void (^ __nullable)(void))completion;
 
+
+#pragma mark --------  pop控制器 --------
+/**
+ 快捷pop上一个控制器
+ 
+ @param animated 是否动画
+ */
++ (void)YW_popViewControllerAnimated:(BOOL)animated;
+/**
+ pop掉几层控制器（类方法）
+ 
+ @param layer 多少层
+ @param animated 是否动画
+ */
++ (void)YW_popViewControllerWithLayer:(NSUInteger)layer Animated:(BOOL)animated;
+/**
+ pop掉到根层控制器
+ 
+ @param animated 是否动画
+ */
++ (void)YW_popToRootViewControllerWithAnimated:(BOOL)animated;
+
+/**
+ pops掉几层控制器（对象方法）
+ 
+ @param layer 多少层
+ @param animated 是否动画
+ */
+- (void)popViewControllerWithLayer:(NSUInteger)layer Animated:(BOOL)animated;
+
+
+
+/**
+ 获取当前使用的控制器
+
+ @return 返回当前使用的控制器
+ */
+- (UIViewController*_Nullable)currentViewController;
+
 @end
 
 @interface UIViewController (YWRouter)
 //控制器获取传递的参数，通过重写params的set方法，类似Android的bundle传值方式(当@"custom"存在时，即是用户自定义的参数，详见demo-YWModularDetailViewController)
 @property (nonatomic, strong) NSDictionary * _Nullable params;
+/** 回调block */
+@property (nonatomic, strong) void(^ _Nullable ywReturnBlock)(id _Nullable value);
 
 @end
