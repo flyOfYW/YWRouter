@@ -171,7 +171,31 @@ iOS方法调用有两种，
 }
 
 
+/**
+  获取控制器，交互给外界，用当前者决定怎么使用该控制器
 
+ @param controllerName 控制器名称
+ @param params 参数（可选）
+ @return 控制器
+ */
+- (UIViewController *)OpenControllerName:(NSString *)controllerName params:(NSDictionary *)params{
+    
+    Class controllerClass = NSClassFromString(controllerName);
+    
+    UIViewController *viewController = [[controllerClass alloc] init];
+    
+    if (params) {
+        if ([viewController respondsToSelector:@selector(setParams:)]) {
+            [viewController performSelector:@selector(setParams:)
+                                 withObject:[params copy]];
+        }else{
+            NSLog(@"----------------- 该控制器没有实现setParams,导致传递参数失败------ \n");
+        }
+    }
+    
+    return viewController;
+    
+}
 /**
  获取控制器，交互给外界，用当前者决定怎么使用该控制器
  *--格式-open://controller?class=控制器的类名&params=传递的参数(参数可选)
@@ -218,7 +242,7 @@ iOS方法调用有两种，
     
     Class controllerClass = NSClassFromString(controllerName);
     if (params) {
-        [[YWRouter YWRouterSingletonInstance] pushController:[[controllerClass alloc] init] params:@{@"params":params,@"custom":@(YES)} animated:animated];
+        [[YWRouter YWRouterSingletonInstance] pushController:[[controllerClass alloc] init] params:params animated:animated];
     }else{
         [[YWRouter YWRouterSingletonInstance] pushController:[[controllerClass alloc] init] params:nil animated:animated];
     }
@@ -250,7 +274,7 @@ iOS方法调用有两种，
  */
 - (void)pushController:(UIViewController *)viewController params:(NSDictionary *)params animated:(BOOL)animated{
     
-    if (!params[@"params"]) {
+    if (!params) {
         
         [[self currentNavigationViewController] pushViewController:viewController animated:animated];
         
@@ -293,7 +317,7 @@ iOS方法调用有两种，
     Class controllerClass = NSClassFromString(controllerName);
     
     if (params) {
-        [[YWRouter YWRouterSingletonInstance] presentViewController:[[controllerClass alloc]init] params:@{@"params":params,@"custom":@(YES)} animated:animated completion:completion];
+        [[YWRouter YWRouterSingletonInstance] presentViewController:[[controllerClass alloc]init] params:params animated:animated completion:completion];
     }else{
         [[YWRouter YWRouterSingletonInstance] presentViewController:[[controllerClass alloc]init] params:nil animated:animated completion:completion];
     }
@@ -328,7 +352,7 @@ iOS方法调用有两种，
  */
 - (void)presentViewController:(UIViewController *)viewController params:(NSDictionary *)params animated:(BOOL)animated completion:(void (^ __nullable)(void))completion{
     
-    if (!params[@"params"]) {
+    if (!params) {
         
         [[[YWRouter YWRouterSingletonInstance] currentViewController] presentViewController:viewController animated:animated completion:completion];
 

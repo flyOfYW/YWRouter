@@ -34,10 +34,9 @@
         l;
     });
    
-    if (_pa[@"custom"]) {
+    if (_pa[@"value"]) {
         //     对应于 ---  [YWRouter YW_pushController:@"YWModularDetailViewController" params:@{@"value":self.dataList[2]} animated:YES ];
-        NSDictionary *custom = _pa[@"params"];
-        _parmLabel.text = custom[@"value"];
+        _parmLabel.text = _pa[@"value"];
     }else{
         _parmLabel.text = _pa[@"params"];
     }

@@ -16,7 +16,7 @@
 
 ### 2. 使用`cocoapods`:
 ```ruby
-pod 'YWRouter', '~> 0.0.3'
+pod 'YWRouter', '~> 0.0.4'
 ```
 ## 1. push和modal的使用
 所有的push和modal方法都可以通过YWRouter的类方法或者对象来调用.这样在push和modal的时候就不需要拿到导航控制器或控制器再跳转了，当然也提供了目标控制器的返回，用开发者自身决定是否在控制器中进行push和modal。
