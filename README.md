@@ -102,7 +102,7 @@ NSLog(@"%@",value);
 break;
 }
 ```
-更多使用请查看demo
+更多使用请查看[demo](https://github.com/flyOfYW/YWRouter)
 
 
 
