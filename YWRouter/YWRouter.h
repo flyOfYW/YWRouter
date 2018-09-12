@@ -177,6 +177,6 @@
 //控制器获取传递的参数，通过重写params的set方法，类似Android的bundle传值方式(当@"custom"存在时，即是用户自定义的参数，详见demo-YWModularDetailViewController)
 @property (nonatomic, strong) NSDictionary * _Nullable params;
 /** 回调block */
-@property (nonatomic, strong) void(^ _Nullable ywReturnBlock)(id _Nullable value);
+@property (nonatomic,   copy) void(^ _Nullable ywReturnBlock)(id _Nullable value);
 
 @end

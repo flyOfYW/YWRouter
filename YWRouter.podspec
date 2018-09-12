@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "YWRouter"
-  s.version      = "0.0.4"
+  s.version      = "0.0.5"
   s.summary      = "简化push和降低耦合"
 
   # This description is used to generate tags and improve search results.

@@ -20,7 +20,7 @@
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回并反向传值" style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
 
-    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)backAction{
@@ -30,7 +30,9 @@
     [YWRouter YW_popViewControllerAnimated:YES];
     
 }
-
+- (void)dealloc{
+    NSLog(@"%s",__func__);
+}
 /*
 #pragma mark - Navigation
 
